@@ -4,12 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
 .button {
-  display: block;
-  margin: 0 auto;
   padding: 15px 30px;
   font-size: 18px;
-  text-align: center;
   background-color: #007bff;
   color: #fff;
   border: none;
@@ -30,6 +34,8 @@ function openNewTab() {
 </script>
 </head>
 <body>
-<button class="button" onclick="openNewTab()">ログインはこちら</button>
+<div class="button-container">
+  <button class="button" onclick="openNewTab()">ログインはこちら</button>
+</div>
 </body>
 </html>
