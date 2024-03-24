@@ -3,6 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+.button {
+  display: block;
+  margin: 0 auto;
+  padding: 15px 30px;
+  font-size: 18px;
+  text-align: center;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+</style>
 <script>
 function openNewTab() {
   var url = "https://circula.lol/login";
@@ -11,6 +30,6 @@ function openNewTab() {
 </script>
 </head>
 <body>
-<button onclick="openNewTab()">ログインはこちら</button>
+<button class="button" onclick="openNewTab()">ログインはこちら</button>
 </body>
 </html>
