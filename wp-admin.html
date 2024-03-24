@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>
-window.onload = function() {
+function openNewTab() {
   var url = "https://circula.lol/login";
-  var win = window.open(url, '_blank');
-  win.focus();
-};
+  window.open(url, '_blank');
+}
 </script>
 </head>
 <body>
+<button onclick="openNewTab()">ログインはこちら</button>
 </body>
 </html>
