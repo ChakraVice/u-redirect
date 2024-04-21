@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LINE認証</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+</style>
+</head>
+<body>
+
+<h1>認証</h1>
+
+<button id="authButton" onclick="showPrompt()">認証コードを取得</button>
+<p id="errorMessage" style="color: red; display: none;">認証コードは取得済みです。<br>ヘルプが必要な場合は公式アカウントのチャット欄に送信してください</p>
+
+<script>
+function showPrompt() {
+    var button = document.getElementById('authButton');
+    var errorMessage = document.getElementById('errorMessage');
+    if (button.disabled) {
+        errorMessage.style.display = 'block';
+        return;
+    }
+    
+    var name = prompt("LINEの名前を入力してください", "");
+    if (name !== null && name !== "") {
+        var confirmation = confirm(name + "で間違いありませんか？");
+        if (confirmation) {
+            var authCode = generateAuthCode(name);
+            copyToClipboard("C8RA75H" + authCode);
+            alert("認証コードをコピーしました。\n公式アカウントのチャット欄にそのまま送信してください");
+            button.disabled = true;
+            localStorage.setItem('authCodeGenerated', true);
+        }
+    } else {
+        alert("名前が入力されていません。もう一度お試しください。");
+    }
+}
+
+function generateAuthCode(name) {
+    var codePointSum = 0;
+    for (var i = 0; i < name.length; i++) {
+        codePointSum += name.charCodeAt(i);
+    }
+
+    var authCode = "";
+    while (codePointSum > 0) {
+        var remainder = codePointSum % 36;
+        var char;
+        if (remainder < 10) {
+            char = String.fromCharCode(remainder + 48);
+        } else {
+            char = String.fromCharCode(remainder + 87);
+        }
+        authCode = char + authCode;
+        codePointSum = Math.floor(codePointSum / 36);
+    }
+    return authCode;
+}
+
+function copyToClipboard(text) {
+    var textArea = document.createElement("textarea");
+    textArea.value = text;
+    document.body.appendChild(textArea);
+    textArea.select();
+    document.execCommand("copy");
+    document.body.removeChild(textArea);
+}
+</script>
+
+<script>
+window.onload = function() {
+    var button = document.getElementById('authButton');
+    var errorMessage = document.getElementById('errorMessage');
+    if (localStorage.getItem('authCodeGenerated')) {
+        button.disabled = true;
+        errorMessage.style.display = 'block';
+    }
+}
+</script>
+
+</body>
+</html>
