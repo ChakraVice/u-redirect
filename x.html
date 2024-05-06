@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>アクセス制限サイト</title>
+<style>
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+  }
+  #message {
+    display: none;
+    color: #ff5a5f;
+    font-weight: bold;
+    font-size: 30px;
+    margin-top: 20px;
+  }
+  #container {
+    margin-top: 50px;
+  }
+  .section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  .section h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  .section p {
+    margin-bottom: 20px;
+  }
+  .section img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="message">クロームブックで<br>開いてください</div>
+  <div id="container">
+    <div class="section">
+      <img src="a.png" alt="QR">
+    </div>
+  </div>
+  <script>
+    function checkAccess() {
+      var userAgent = navigator.userAgent;
+      return !/Windows NT|Macintosh|Linux/.test(userAgent);
+    }
+
+    if (checkAccess()) {
+      document.getElementById("message").style.display = "block";
+    } else {
+      window.location.replace("https://forms.gle/fVbq975kFmK7PCkB6");
+    }
+  </script>
+</body>
+</html>
